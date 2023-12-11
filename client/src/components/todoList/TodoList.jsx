@@ -5,7 +5,6 @@ export default function TodoList() {
         name: "",
     })
     const [allTodo, setAllTodo] = useState([])
-    console.log(allTodo);
     const [isEditing, setIsEditing] = useState(false)
     const [flag, setFlag] = useState(false)
     
@@ -78,7 +77,8 @@ export default function TodoList() {
     const handleDeleteAll = async () => {
         try {
             const response = await axios.delete(`http://localhost:7800/api/v1/todo`);
-            setAllTodo(response.data.todo);
+            // setAllTodo(response.data.todo);
+            setFlag(!flag)
         } catch (error) {
             console.log(error);
         }
@@ -88,7 +88,8 @@ export default function TodoList() {
         // console.log(item);
         try {
             const res = await axios.patch(`http://localhost:7800/api/v1/todo/completed/${item.id}`)
-            setAllTodo(res.data.todoList)
+            // setAllTodo(res.data.todoList)
+            setFlag(!flag)
             // console.log(res);
         }
         catch (error) {
